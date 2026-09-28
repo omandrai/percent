@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Percentage Calculator</title>
+
+    <style>
+        * {
+            padding: 0%;
+            margin: 0%;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 100px;
+            background-color: brown;
+        }
+
+        input {
+            padding: 12px;
+            margin: 10px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 12px 25px;
+            background: black;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        #result {
+            margin-top: 20px;
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 15px;
+                background-color: brown;
+            }
+
+            input {
+                padding: 12px;
+                font-size: 15px;
+            }
+
+            button {
+                padding: 13px;
+                font-size: 16px;
+            }
+
+            #result 
+                font-size: 17px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <input type="number" id="obtain" placeholder="Obtain Marks">
+
+    <input type="number" id="total" value="500" readonly>
+
+    <br>
+
+    <button onclick="calculateResult()">Check</button>
+
+    <h1 id="result"></h1>
+
+</body>
+
+<script>
+
+    function calculateResult() {
+
+        var obtain = document.getElementById("obtain").value;
+        var total = document.getElementById("total").value;
+
+        // Empty input check
+        if (obtain === "") {
+            document.getElementById("result").innerHTML =
+                "Please enter your marks";
+            return;
+        }
+
+        // Marks validation
+        if (obtain < 0 || obtain > total) {
+            document.getElementById("result").innerHTML =
+                "Please enter valid marks";
+            return;
+        }
+
+        // Percentage calculation
+        var percent = (obtain * 100) / total;
+
+        // Grade
+        var grade;
+
+        if (percent >= 90) {
+            grade = "A+";
+        }
+        else if (percent >= 80) {
+            grade = "A";
+        }
+        else if (percent >= 70) {
+            grade = "B";
+        }
+        else if (percent >= 60) {
+            grade = "C";
+        }
+        else if (percent >= 50) {
+            grade = "D";
+        }
+        else {
+            grade = "Fail";
+        }
+
+        document.getElementById("result").innerHTML =
+            "Your Percentage is " + percent.toFixed(2) + "%<br>" +
+            "Your Grade is " + grade;
+    }
+
+</script>
+
+</html>
